@@ -1,9 +1,9 @@
 import { useState, useCallback, useRef } from "react";
 import QUESTIONS from "../questions.js";
-import quizCompletedImg from "../assets/quiz-complete.png";
 import QuestionTimer from "./QuestionTimer.jsx";
 import Answers from "./Answers.jsx";
 import Question from "./Question.jsx";
+import Summary from "./Summary.jsx";
 export default function Quiz() {
   const [userAnswers, setUserAnswers] = useState([]);
   const activeQuestionIndex = userAnswers.length;
@@ -21,12 +21,7 @@ export default function Quiz() {
     [handleSelectAnswer],
   );
   if (quizIsCompleted) {
-    return (
-      <div id="summary">
-        <img src={quizCompletedImg} alt="Quiz Tamamlandı" />
-        <h2>Quiz Tamamlandı!</h2>
-      </div>
-    );
+    return <Summary userAnswers={userAnswers} />;
   }
   return (
     <div id="quiz">
